@@ -1,0 +1,4 @@
+metadata_version: 1
+name: KDE-analysis-code
+description: Code and data behind the production of the community kernel density estimation maps, derived from the analysis of Call Detail Records.
+corresponding_contributor: {}
