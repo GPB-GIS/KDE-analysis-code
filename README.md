@@ -11,4 +11,4 @@ Code and mock data for the creating of KDE maps supporting publication of "Detec
 
 - The "ssc_csv" is a mock version of the output provided to the author from CDR processing.
 
-- The Worldpop population raster dataset for Nepal (2015) can be found at: https://www.worldpop.org/geodata/summary?id=27795 . Note, this data has been 'reproduced' since analysis. The version of the dataset used in this analysis is provided and archived in this repo.
+- The Worldpop population raster dataset for Nepal (2015) can be found at: https://www.worldpop.org/geodata/summary?id=27795 . Note, this data has been 'reproduced' since analysis. The exact version of the dataset used in this analysis can be provided, but is too large to archive in this repo.
