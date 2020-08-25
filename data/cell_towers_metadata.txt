@@ -1,0 +1,15 @@
+Data Metadata: Cell Tower Locations
+
+675 Unique Entries (unique towers)
+
+Contents:
+
+location_ID [TEXT] | Lat [NUMERIC] | Lon [NUMERIC]
+
+(as per mock data)
+
+Geographic Coordinate Reference System: WGS84
+
+Temporal Currency: correct for April 2015.
+
+Original locations provided by Ncell.

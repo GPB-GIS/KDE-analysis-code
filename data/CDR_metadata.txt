@@ -1,0 +1,15 @@
+Data Metadata: Call Detail Records
+
+Approximately 5 billion unique entries (total number of records for all subscribers)
+
+Contents:
+
+event_ID [TEXT] | outgoing [BOOLEAN] | datetime [TIMESTAMPTZ] | msidn [TEXT] | msidn_counterpart [TEXT] | location_id [TEXT]
+
+(as per mock data)
+
+Geographic Coordinate Reference System: None. Joined with Tower Locations via location_ID to attain spatial reference.
+
+Temporal Currency: January 01 - April 24 2015.
+
+Original dataset provided by Ncell.

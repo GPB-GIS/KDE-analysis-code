@@ -1,0 +1,44 @@
+Code Workflow
+**************
+
+This workflow details the GIS processing to create the KDEs of each of the communities detected from the csv provided by the Flowminder analyst.
+This CSV is created by constructing a network graph of all subscribers (that match the parameters outlined in Materials and methods).
+The Louvain CDA is then run on this graph to allocate users into communities.
+For each user, a home location is calculated and assigned.
+These home locations are used to calculate, for each community, the total count of subscribers based at each cell tower.
+
+1. Run 'Generate ind comms from ssc csv'python notebook on csv provided by Flowminder analyst: COMMUNITY | LAT | LON | COUNT 
+ - Raw CSV details every cell tower location and respective count of members for all communities.
+ - Python code separates each community (and its cell towers and counts) into individual CSVs.
+
+2. Run 'Nepal_Clip_Group_Analysis_CURRENT' python notebook to generate Voronoi population grid from WorldPop raster
+ - Loads raster and voronois generated for the 11 districts
+ - Generates a grid based on the WorldPop extent within each of the voronois 
+ - Creating a grid and clipping for each Voronoi was computationally too complex
+ - The main code in this notebook generates a grid matching the WorldPop extent/resolution around the Voronoi and then clips to the Voronoi extent
+ - Conducts zonal statstics on the Voronoi to determine: 
+				- Population in each grid 'square (or 'shape') within each voronoi;
+				- Sums these populations for a total for each voronoi;
+				- Calculates proportion of total Voronoi population each grid 'square' contains
+
+3. Run 'comm_pop_gen.py' arcpy script.
+ - Creates a point shapefile for each of the individual communities (from the csvs generated in [1]).
+ - Joins each point shapefile to the Voronoi grid shapefile created in [2].
+ - Distributes the community count of each voronoi across the voronoi using the grid.
+
+4. Run 'point_data_generation.py' arcpy script to generate point files for use in the KDE mapping.
+
+5. Run 'kde_generation_atleast1person.py' arcpy script to generate KDE maps for each community (for all points that contain at least 1 person).
+
+6. Run 'reclassify_raster.py' arcpy script to generate X% distribution maps. 40%, 60%, 80% were trialled.
+
+Additional steps for Figure 6
+
+7. Run 'near_table_gen.py' to create near tables used in the 'cumpopvsdistance.py' arcpy script.
+	- Calculates distances between points to be used in the next script to calculate population distribution over space.
+
+8. Run 'cumpopvsdistance.py' arcpy script to join these near tables to each of the community point files to be used in the next step.
+
+9. Run 'Community Distance versus Population comparison - LOOP' to generate Figure 6. 
+
+  
